@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~   Copyright (C) 2019 The Android Open Source Project
   ~   Licensed under the Apache License, Version 2.0 (the "License");
   ~   you may not use this file except in compliance with the License.
@@ -15,17 +14,41 @@
   -->
 
 <!-- Describe the animation for activity_step3.xml -->
-<MotionScene xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:android="http://schemas.android.com/apk/res/android">
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- A transition describes an animation via start and end state -->
     <Transition
-            app:constraintSetStart="@+id/start"
-            app:constraintSetEnd="@+id/end"
-            app:duration="3000">
+        app:constraintSetEnd="@+id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="3000">
         <OnClick
-                app:targetId="@id/moon"
-                app:clickAction="toggle"
-        />
+            app:clickAction="toggle"
+            app:targetId="@id/moon" />
+
+
+        <KeyFrameSet>
+            <KeyPosition app:framePosition="50"
+                app:motionTarget="@id/moon"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.5" />
+
+
+            <KeyPosition app:framePosition="50"
+                app:motionTarget="@id/credits"
+                app:keyPositionType="parentRelative"
+                app:percentX="0.5" />
+
+        </KeyFrameSet>
+
+
+        <!--
+
+         framePosition - a number between 0 and 100 to say when in the animation this KeyPosition should be applied, with 1 being 1% through the animation, and 99 being 99% through the animation. So if the value is 50, we apply it right in the middle.
+motionTarget - the view for which this KeyPosition modifies the path
+keyPositionType - how this KeyPosition modifies the path. It can be either parentRelative, pathRelative, or deltaRelative (explained in the next step).
+percentX | percentY - how much to modify the path at framePosition (values between 0.0 and 1.0, with negative values and values >1 allowed)
+You can think of it this way, "At framePosition modify the path of motionTarget by moving it by percentX or percentY according to the coordinates determined by keyPositionType."
+         -->
 
         <!-- TODO: Add KeyFrameSet and KeyPosition -->
     </Transition>
@@ -33,42 +56,38 @@
     <!-- Constraints to apply at the start of the animation -->
     <ConstraintSet android:id="@+id/start">
         <Constraint
-                android:id="@id/moon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-        />
+            android:id="@id/moon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <Constraint
-                android:id="@id/credits"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.0"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/moon"
-                app:layout_constraintTop_toTopOf="@id/moon"
-        />
+            android:id="@id/credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toBottomOf="@id/moon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/moon" />
     </ConstraintSet>
 
     <!-- Constraints to apply at the end of the animation -->
     <ConstraintSet android:id="@+id/end">
         <Constraint
-                android:id="@id/moon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-        />
+            android:id="@id/moon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
         <Constraint
-                android:id="@id/credits"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1.0"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/moon"
-                app:layout_constraintTop_toTopOf="@id/moon"
-        />
+            android:id="@id/credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toBottomOf="@id/moon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/moon" />
     </ConstraintSet>
 </MotionScene>

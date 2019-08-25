@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-class MainAdapter(val data: List<Step>) : RecyclerView.Adapter<MainViewHolder>() {
+class MainAdapter(private val data: List<Step>) : RecyclerView.Adapter<MainViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return MainViewHolder(view as CardView)
@@ -114,7 +114,7 @@ class MainAdapter(val data: List<Step>) : RecyclerView.Adapter<MainViewHolder>()
 
 }
 
-class MainViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
+class MainViewHolder(private val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
     val header: TextView = cardView.findViewById(R.id.header)
     val description: TextView = cardView.findViewById(R.id.description)
     val caption: TextView = cardView.findViewById(R.id.caption)
