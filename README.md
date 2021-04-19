@@ -1,6 +1,7 @@
-# MotionLayout Codelab
+# Advanced Android in Kotlin 03.2: Animation with MotionLayout
 
-This folder contains the source code for the Motion Layout codelab.
+
+https://developer.android.com/codelabs/motion-layout#0
 
 ### License
 
